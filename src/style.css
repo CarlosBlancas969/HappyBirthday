@@ -1,0 +1,77 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cream: #f5f0fa;
+  --warm-white: #faf8ff;
+  --blue-soft: #a8c4e8;
+  --blue-mid: #6a9fd4;
+  --blue-deep: #3a6fa8;
+  --blue-ink: #1e4d8c;
+  --blush: #d8c8f0;
+  --blush-mid: #c4aee8;
+  --sage: #b8c8e0;
+  --gold: #8a6ab8;
+  --gold-light: #b090d8;
+  --dark: #1a1428;
+  --text-body: #2a2040;
+  --text-soft: #6a5880;
+  --shadow-warm: rgba(26, 20, 40, 0.12);
+  --shadow-blue: rgba(30, 77, 140, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--cream);
+  color: var(--text-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue-soft);
+  border-radius: 3px;
+}
+
+/* Fade transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
