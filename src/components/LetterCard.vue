@@ -149,6 +149,20 @@ import {
   Heart, Star, Sparkles, Sun, Camera, Calendar, Anchor,
   Feather, Pen, MessageCircle, Smile
 } from 'lucide-vue-next'
+
+
+onMounted(() => {
+  // Espera a que cargue el componente y parsea todos los emojis
+  const script = document.createElement('script')
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js'
+  script.onload = () => {
+    twemoji.parse(document.querySelector('.polaroid-field'), {
+      folder: 'svg',
+      ext: '.svg'
+    })
+  }
+  document.head.appendChild(script)
+})
 import Chopper from './Chopper.vue'
 import TypeWriter from './TypeWriter.vue'
 
@@ -399,7 +413,7 @@ onUnmounted(() => observer?.disconnect())
 .polaroid {
   position: relative;
   background: white;
-  padding: 0.55rem 0.55rem 2rem;
+  padding: 0.55rem 0.55rem 2.5rem;
   box-shadow: 0 4px 16px rgba(30,77,140,0.18), 0 1px 4px rgba(0,0,0,0.1);
   transform: rotate(var(--rot));
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -426,7 +440,7 @@ onUnmounted(() => observer?.disconnect())
   border-radius: 2px;
 }
 .polaroid-img {
-  width: 120px; height: 110px;
+  width: 120px; height: 100px;
   overflow: hidden;
   background: linear-gradient(135deg, #e8f2f8, #f5e8e0);
 }
@@ -438,8 +452,12 @@ onUnmounted(() => observer?.disconnect())
   font-family: 'Crimson Pro', serif;
   font-size: 0.68rem; font-style: italic;
   color: var(--text-soft); text-align: center;
-  position: absolute; bottom: 0.45rem;
+  position: absolute; bottom: 0.5rem;
   left: 0; right: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Stickers */
@@ -501,5 +519,13 @@ onUnmounted(() => observer?.disconnect())
   .polaroid { padding-bottom: 1.8rem; }
   .polaroid-row { gap: 0.5rem; }
   .snoopy-img { width: 50px; }
+}
+
+/* Twemoji styling */
+:deep(.polaroid-caption img.emoji) {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  display: inline-block;
 }
 </style>
